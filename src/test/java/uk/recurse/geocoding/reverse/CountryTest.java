@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class CountryTest {
 
@@ -16,10 +17,22 @@ class CountryTest {
 
     private static Country uk;
 
+    private static ReverseGeocoder geocoder; //nImplement
+
     @BeforeAll
     static void setup() {
         uk = Country.load(new StringReader(INPUT)).get("2635167");
+
+        geocoder = new ReverseGeocoder(); //nImplement
+
     }
+
+    @Test
+        //test9
+    void testCountrySetup(){
+        assertEquals("United Kingdom", geocoder.getCountry(50.94159,-2.63211).map(Country::name).get());
+    }
+
 
     @Test
     void iso() {

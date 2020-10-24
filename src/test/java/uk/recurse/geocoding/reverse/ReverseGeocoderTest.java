@@ -172,6 +172,10 @@ class ReverseGeocoderTest {
         assertEquals("AF", geocoder.getCountry(-26.1625,27.8725).map(Country::continent).get());
     }
 
+    @Test
+    void testPopulation() {
+        assertEquals("62348447", geocoder.getCountry(53.95763,-1.08271).map(Country::population).get());
+    }
 
 
 }
