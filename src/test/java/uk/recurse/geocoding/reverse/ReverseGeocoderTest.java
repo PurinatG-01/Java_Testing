@@ -178,8 +178,22 @@ class ReverseGeocoderTest {
     {
         int thPopulation = 67089500;
         int vnPopulation = 89571130;
-        assertEquals(vnPopulation, geocoder.getCountry(18.66667,105.66667).map(Country::population).get());
-        assertEquals(thPopulation, geocoder.getCountry(17.711150,104.411472).map(Country::population).get());
+        assertThrows(NoSuchElementException.class, ()->{
+            assertEquals(thPopulation, geocoder.getCountry(0,104.411472).map(Country::population).get());
+            assertEquals(thPopulation, geocoder.getCountry(17.711150,0).map(Country::population).get());
+            assertEquals(thPopulation, geocoder.getCountry(0,0).map(Country::population).get());
+
+            assertEquals(vnPopulation, geocoder.getCountry(0,105.66667).map(Country::population).get());
+            assertEquals(vnPopulation, geocoder.getCountry(18.66667,0).map(Country::population).get());
+            assertEquals(vnPopulation, geocoder.getCountry(0,0).map(Country::population).get());
+
+        });
+
+        assertDoesNotThrow( ()->{
+            assertEquals(thPopulation, geocoder.getCountry(17.711150,104.411472).map(Country::population).get());
+            assertEquals(vnPopulation, geocoder.getCountry(18.66667,105.66667).map(Country::population).get());
+
+        });
     }
 
     @Test
@@ -187,7 +201,22 @@ class ReverseGeocoderTest {
     void testArea()
     {
         int thArea = 514000;
+        int vnArea = 329560;
+        assertThrows(NoSuchElementException.class, ()->{
+            assertEquals(thArea, geocoder.getCountry(0,104.411472).map(Country::area).get());
+            assertEquals(thArea, geocoder.getCountry(17.711150,0).map(Country::area).get());
+            assertEquals(thArea, geocoder.getCountry(0,0).map(Country::area).get());
 
-        assertEquals(thArea, geocoder.getCountry(17.711150,104.411472).map(Country::area).get());
+            assertEquals(vnArea, geocoder.getCountry(0,105.66667).map(Country::area).get());
+            assertEquals(vnArea, geocoder.getCountry(18.66667,0).map(Country::area).get());
+            assertEquals(vnArea, geocoder.getCountry(0,0).map(Country::area).get());
+
+
+        });
+
+        assertDoesNotThrow( ()->{
+            assertEquals(thArea, geocoder.getCountry(17.711150,104.411472).map(Country::area).get());
+            assertEquals(vnArea, geocoder.getCountry(18.66667,105.66667).map(Country::area).get());
+        });
     }
 }
