@@ -173,9 +173,12 @@ class ReverseGeocoderTest {
     }
 
     @Test
-    void testPopulation() {
-        assertEquals("62348447", geocoder.getCountry(53.95763,-1.08271).map(Country::population).get());
-    }
+    //Check if the number of population given by the country match the info in geo data
+    void testPopulation()
+    {
+        int thPopulation = 67089500;
 
+        assertEquals(thPopulation, geocoder.getCountry(17.711150,104.411472).map(Country::population).get());
+    }
 
 }

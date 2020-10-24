@@ -50,9 +50,7 @@ class CountryTest {
     }
 
     @Test
-    void name() {
-        assertEquals(uk.name(), "United Kingdom");
-    }
+    void name() { assertEquals(uk.name(), "United Kingdom"); }
 
     @Test
     void area() {
