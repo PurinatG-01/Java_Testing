@@ -43,7 +43,7 @@ class ReverseGeocoderTest {
 
 
     @Test
-    // Check whether lat and lon can be found in geo data
+    // Test1: Check whether lat and lon can be found in geo data
     void TestErrorthrow()
     {
 
@@ -60,7 +60,7 @@ class ReverseGeocoderTest {
     }
 
     @Test
-    // Check if this lat & lon match the country name in geo data
+    // Test2: Check if this lat & lon match the country name in geo data
     void Testfindcountryname()
     {
 
@@ -71,7 +71,7 @@ class ReverseGeocoderTest {
     }
 
     @Test
-    //Check boundary of two adjacent country in geo data
+    //Test3: Check boundary of two adjacent country in geo data
     void Testadjacentcountryboundary()
     {
 
@@ -81,7 +81,7 @@ class ReverseGeocoderTest {
     }
 
     @Test
-    //Check boundary of continent in geo data
+    //Test4: Check boundary of continent in geo data
     void Testcountryboundary()
     {
 
@@ -94,7 +94,7 @@ class ReverseGeocoderTest {
     }
 
     @Test
-    //Check if this lat & lon match the country iso in geo data
+    //Test5: Check if this lat & lon match the country iso in geo data
     void Testcountryiso()
     {
         assertEquals("TH", geocoder.getCountry(7.88481,98.40008).map(Country::iso).get());
@@ -104,7 +104,7 @@ class ReverseGeocoderTest {
     }
 
     @Test
-    //Check
+    //Test6: Check minimum lat and long to input
     void Testminmaxlatlon()
     {
         assertThrows(NoSuchElementException.class, ()->{
@@ -142,7 +142,7 @@ class ReverseGeocoderTest {
     }
 
     @Test
-    //Check local languages for each country in geo data (locales ordered by the number of speakers)
+    //Test7: Check local languages for each country in geo data (locales ordered by the number of speakers)
     void Testlocales()
     {
         List<Locale> thlocales = Arrays.asList(
@@ -163,7 +163,7 @@ class ReverseGeocoderTest {
     }
 
     @Test
-    //Check if this lat & lon match the country continent in geo data
+    //Test8: Check if this lat & lon match the country continent in geo data
     void Testfindcontinent()
     {
 
@@ -173,7 +173,7 @@ class ReverseGeocoderTest {
     }
 
     @Test
-    //Check if the number of population given by the country match the info in geo data
+    //Test9: Check if the number of population given by the country match the info in geo data
     void testPopulation()
     {
         int thPopulation = 67089500;
@@ -182,4 +182,12 @@ class ReverseGeocoderTest {
         assertEquals(thPopulation, geocoder.getCountry(17.711150,104.411472).map(Country::population).get());
     }
 
+    @Test
+        //Test10: Check if the number of area given by the country match the info in geo data
+    void testArea()
+    {
+        int thArea = 514000;
+
+        assertEquals(thArea, geocoder.getCountry(17.711150,104.411472).map(Country::area).get());
+    }
 }
