@@ -177,7 +177,8 @@ class ReverseGeocoderTest {
     void testPopulation()
     {
         int thPopulation = 67089500;
-
+        int vnPopulation = 89571130;
+        assertEquals(vnPopulation, geocoder.getCountry(18.66667,105.66667).map(Country::population).get());
         assertEquals(thPopulation, geocoder.getCountry(17.711150,104.411472).map(Country::population).get());
     }
 
