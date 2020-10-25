@@ -104,10 +104,22 @@ class ReverseGeocoderTest {
     //Test3: Check boundary of two adjacent country in geo data
     void Testadjacentcountryboundary()
     {
-
         assertEquals("Thailand", geocoder.getCountry(17.711150, 104.411472).map(Country::name).get());
-        assertEquals("Laos", geocoder.getCountry(17.722720, 104.427701).map(Country::name).get());
+        assertThrows(NoSuchElementException.class, ()->{
+            geocoder.getCountry(100, 116.873733).get();
+        });
+        assertThrows(NoSuchElementException.class, ()->{
+            geocoder.getCountry(17.711150, -180).get();
+        });
+        assertThrows(NoSuchElementException.class, ()->{
+            geocoder.getCountry(100, -180).get();
+        });
 
+
+        assertEquals("Laos", geocoder.getCountry(17.96667, 102.6).map(Country::name).get());
+        assertEquals("Myanmar", geocoder.getCountry(20.46504, 94.8712).map(Country::name).get());
+        assertEquals("Cambodia", geocoder.getCountry(11.56245, 104.91601).map(Country::name).get());
+        assertEquals("Malaysia", geocoder.getCountry(6.32649, 99.8432).map(Country::name).get());
     }
 
     @Test
@@ -170,7 +182,7 @@ class ReverseGeocoderTest {
 
     @Test
     //Test6: Check minimum lat and long to input
-    void TestminmaxlatlonInt()
+    void Testminmaxlatlon()
     {
         assertThrows(NoSuchElementException.class, ()->{
             geocoder.getCountry(-91.00,181.00).get();
@@ -205,42 +217,7 @@ class ReverseGeocoderTest {
         });
 
     }
-    @Test
-    void TestminmaxlatlonFunc()
-    {
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(-91.00,181.00).get();
-        });
 
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(-91.00,-181.00).get();
-        });
-
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(91.00,-181.00).get();
-        });
-
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(91.00,181.00).get();
-        });
-
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(-91.00,27.8725).get();
-        });
-
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(91.00,27.8725).get();
-        });
-
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(7.88481,-181.00).get();
-        });
-
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(7.88481,181.00).get();
-        });
-
-    }
 
     @Test
     //Test7: Check local languages for each country in geo data (locales ordered by the number of speakers)
