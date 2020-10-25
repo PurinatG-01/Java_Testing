@@ -170,7 +170,43 @@ class ReverseGeocoderTest {
 
     @Test
     //Test6: Check minimum lat and long to input
-    void Testminmaxlatlon()
+    void TestminmaxlatlonInt()
+    {
+        assertThrows(NoSuchElementException.class, ()->{
+            geocoder.getCountry(-91.00,181.00).get();
+        });
+
+        assertThrows(NoSuchElementException.class, ()->{
+            geocoder.getCountry(-91.00,-181.00).get();
+        });
+
+        assertThrows(NoSuchElementException.class, ()->{
+            geocoder.getCountry(91.00,-181.00).get();
+        });
+
+        assertThrows(NoSuchElementException.class, ()->{
+            geocoder.getCountry(91.00,181.00).get();
+        });
+
+        assertThrows(NoSuchElementException.class, ()->{
+            geocoder.getCountry(-91.00,27.8725).get();
+        });
+
+        assertThrows(NoSuchElementException.class, ()->{
+            geocoder.getCountry(91.00,27.8725).get();
+        });
+
+        assertThrows(NoSuchElementException.class, ()->{
+            geocoder.getCountry(7.88481,-181.00).get();
+        });
+
+        assertThrows(NoSuchElementException.class, ()->{
+            geocoder.getCountry(7.88481,181.00).get();
+        });
+
+    }
+    @Test
+    void TestminmaxlatlonFunc()
     {
         assertThrows(NoSuchElementException.class, ()->{
             geocoder.getCountry(-91.00,181.00).get();
@@ -208,23 +244,45 @@ class ReverseGeocoderTest {
 
     @Test
     //Test7: Check local languages for each country in geo data (locales ordered by the number of speakers)
-    void Testlocales()
+    void TestlocalesInt()
+    {
+        List<Locale> thlocales = Arrays.asList(
+                new Locale("th"),
+                new Locale("en")
+        );
+        assertThrows(NoSuchElementException.class , ()-> {
+            assertEquals(thlocales, geocoder.getCountry(-95.72343,250.34277).map(Country::continent).get());
+            assertEquals(thlocales, geocoder.getCountry(-95.72343,98.40008).map(Country::continent).get());
+            assertEquals(thlocales, geocoder.getCountry(7.88481,250.34277).map(Country::continent).get());
+        });
+        assertDoesNotThrow( () -> {
+            assertEquals(thlocales, geocoder.getCountry(7.88481,98.40008).map(Country::locales).get());
+        });
+
+    }
+    @Test
+    void TestlocalesFunc()
     {
         List<Locale> thlocales = Arrays.asList(
                 new Locale("th"),
                 new Locale("en")
         );
 
-        assertEquals(thlocales, geocoder.getCountry(7.88481,98.40008).map(Country::locales).get());
-
-        List<Locale> uklocales = Arrays.asList(
-                new Locale("en", "GB"),
-                new Locale("cy", "GB"),
-                new Locale("gd")
+        List<Locale> uslocales = Arrays.asList(
+                new Locale("en", "US"),
+                new Locale("es", "US"),
+                new Locale("haw"),
+                new Locale("fr")
         );
 
-        assertEquals(uklocales, geocoder.getCountry(51.507222, -0.1275).map(Country::locales).get());
-
+        assertThrows(NoSuchElementException.class , ()-> {
+            assertEquals(thlocales, geocoder.getCountry(0,0).map(Country::continent).get());
+            assertEquals(uslocales, geocoder.getCountry(0,0).map(Country::continent).get());
+        });
+        assertDoesNotThrow( () -> {
+            assertEquals(thlocales, geocoder.getCountry(7.88481,98.40008).map(Country::locales).get());
+            assertEquals(uslocales, geocoder.getCountry(38.73289,-77.05803).map(Country::locales).get());
+        });
     }
 
     @Test
