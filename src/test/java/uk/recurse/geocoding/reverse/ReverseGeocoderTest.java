@@ -263,37 +263,15 @@ class ReverseGeocoderTest {
     void testPopulationInt()
     {
         int thPopulation = 67089500;
-        int vnPopulation = 89571130;
-
-        int anPopulation = 13254;
-        int brPopulation = 201103330;
-        int andPopulation = 84000;
-        int aePopulation = 4975593;
-        int bePopulation = 9056010;
-        int sgPopulation = 30;
-        int auPopulation = 21515754;
         assertThrows(NoSuchElementException.class, ()->{
-            assertEquals(thPopulation, geocoder.getCountry(0,104.411472).map(Country::population).get());
-            assertEquals(thPopulation, geocoder.getCountry(17.711150,0).map(Country::population).get());
-            assertEquals(thPopulation, geocoder.getCountry(0,0).map(Country::population).get());
-
-            assertEquals(vnPopulation, geocoder.getCountry(0,105.66667).map(Country::population).get());
-            assertEquals(vnPopulation, geocoder.getCountry(18.66667,0).map(Country::population).get());
-            assertEquals(vnPopulation, geocoder.getCountry(0,0).map(Country::population).get());
+            assertEquals(thPopulation, geocoder.getCountry(17.711150,250.34277).map(Country::population).get());
+            assertEquals(thPopulation, geocoder.getCountry(-95.72343,104.411472).map(Country::population).get());
+            assertEquals(thPopulation, geocoder.getCountry(-95.72343,250.34277).map(Country::population).get());
 
         });
 
         assertDoesNotThrow( ()->{
             assertEquals(thPopulation, geocoder.getCountry(17.711150,104.411472).map(Country::population).get());
-            assertEquals(vnPopulation, geocoder.getCountry(18.66667,105.66667).map(Country::population).get());
-
-            assertEquals(anPopulation, geocoder.getCountry(18.21704,-63.05783).map(Country::population).get());
-            assertEquals(brPopulation, geocoder.getCountry(-3.46222,-44.87056).map(Country::population).get());
-            assertEquals(andPopulation, geocoder.getCountry(42.50729,1.53414).map(Country::population).get());
-            assertEquals(aePopulation, geocoder.getCountry(25.56473,55.55517).map(Country::population).get());
-            assertEquals(bePopulation, geocoder.getCountry(8.88649,2.59753).map(Country::population).get());
-            assertEquals(auPopulation, geocoder.getCountry(-31.89578,115.76431).map(Country::population).get());
-            assertEquals(sgPopulation, geocoder.getCountry(-54.28111,-36.5092).map(Country::population).get());
 
         });
     }
@@ -301,28 +279,33 @@ class ReverseGeocoderTest {
     @Test
     void testPopulationFunc()
     {
-        int pop=539902581;
-        assertEquals(pop, geocoder.getCountry(18.21704,-63.05783).map(Country::population).get());
-        System.out.println(geocoder.getCountry(18.21704,-63.05783).map(Country::population).get());
-//        int thPopulation = 67089500;
-//        int vnPopulation = 89571130;
-//
-//        int anPopulation = 13254;
-//        int brPopulation = 201103330;
-//        int andPopulation = 84000;
-//        int aePopulation = 4975593;
-//        int bePopulation = 9056010;
-//        int sgPopulation = 30;
-//        int auPopulation = 21515754;
-//        assertThrows(NoSuchElementException.class, ()->{
-//            assertEquals(thPopulation, geocoder.getCountry(0,104.411472).map(Country::population).get());
-//
-//        });
-//
-//        assertDoesNotThrow( ()->{
-//            assertEquals(thPopulation, geocoder.getCountry(17.711150,104.411472).map(Country::population).get());
+        int anPopulation = 13254;
+        int brPopulation = 201103330;
+        int andPopulation = 84000;
+        int aePopulation = 4975593;
+        int bePopulation = 9056010;
+        int auPopulation = 21515754;
+        int sgPopulation = 30;
 
-//        });
+        assertThrows(NoSuchElementException.class, ()->{
+            assertEquals(anPopulation, geocoder.getCountry(0,0).map(Country::population).get());
+            assertEquals(brPopulation, geocoder.getCountry(0,1).map(Country::population).get());
+            assertEquals(andPopulation, geocoder.getCountry(0,2).map(Country::population).get());
+            assertEquals(aePopulation, geocoder.getCountry(0,3).map(Country::population).get());
+            assertEquals(bePopulation, geocoder.getCountry(0,4).map(Country::population).get());
+            assertEquals(auPopulation, geocoder.getCountry(0,5).map(Country::population).get());
+            assertEquals(sgPopulation, geocoder.getCountry(0,6).map(Country::population).get());
+        });
+
+        assertDoesNotThrow( ()->{
+            assertEquals(anPopulation, geocoder.getCountry(18.21704,-63.05783).map(Country::population).get());
+            assertEquals(brPopulation, geocoder.getCountry(-3.46222,-44.87056).map(Country::population).get());
+            assertEquals(andPopulation, geocoder.getCountry(42.50729,1.53414).map(Country::population).get());
+            assertEquals(aePopulation, geocoder.getCountry(25.56473,55.55517).map(Country::population).get());
+            assertEquals(bePopulation, geocoder.getCountry(8.88649,2.59753).map(Country::population).get());
+            assertEquals(auPopulation, geocoder.getCountry(-31.89578,115.76431).map(Country::population).get());
+            assertEquals(sgPopulation, geocoder.getCountry(-54.28111,-36.5092).map(Country::population).get());
+        });
     }
 
     //Test10: Check if the number of area given by the country match the info in geo data
