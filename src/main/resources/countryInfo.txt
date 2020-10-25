@@ -25,7 +25,7 @@
 # A number of territories are not included in ISO 4217, because their currencies are not per se an independent currency, 																		
 # but a variant of another currency. These currencies are:																		
 #																		
-# 1. FO : Faroese krona (1:1 pegged to the Danish krone)																		
+# 1. FO : Faroese krona (1:1 pegged to the Danish krone)				""
 # 2. GG : Guernsey pound (1:1 pegged to the pound sterling)																		
 # 3. JE : Jersey pound (1:1 pegged to the pound sterling)																		
 # 4. IM : Isle of Man pound (1:1 pegged to the pound sterling)																		
@@ -54,7 +54,7 @@ AE	ARE	784	AE	United Arab Emirates	Abu Dhabi	82880	4975593	AS	.ae	AED	Dirham	971
 AF	AFG	004	AF	Afghanistan	Kabul	647500	29121286	AS	.af	AFN	Afghani	93			fa-AF,ps,uz-AF,tk	1149361	TM,CN,IR,TJ,PK,UZ	
 AG	ATG	028	AC	Antigua and Barbuda	St. John's	443	86754	NA	.ag	XCD	Dollar	+1-268			en-AG	3576396		
 AI	AIA	660	AV	Anguilla	The Valley	102	13254	NA	.ai	XCD	Dollar	+1-264			en-AI	3573511		
-AL	ALB	008	AL	Albania	Tirana	28748	2986952	EU	.al	ALL	Lek	355	####	^(\d{4})$	sq,el	783754	MK,GR,ME,RS,XK	
+AL	ALB	008	AL	Albania	Tirana	28748	13254	EU	.al	ALL	Lek	355	####	^(\d{4})$	sq,el	783754	MK,GR,ME,RS,XK
 AM	ARM	051	AM	Armenia	Yerevan	29800	2968000	AS	.am	AMD	Dram	374	######	^(\d{6})$	hy	174982	GE,IR,AZ,TR	
 AO	AGO	024	AO	Angola	Luanda	1246700	13068161	AF	.ao	AOA	Kwanza	244			pt-AO	3351879	CD,NA,ZM,CG	
 AQ	ATA	010	AY	Antarctica		14000000	0	AN	.aq							6697173		
@@ -80,7 +80,7 @@ BN	BRN	096	BX	Brunei	Bandar Seri Begawan	5770	395027	AS	.bn	BND	Dollar	673	@@###
 BO	BOL	068	BL	Bolivia	Sucre	1098580	9947418	SA	.bo	BOB	Boliviano	591			es-BO,qu,ay	3923057	PE,CL,PY,BR,AR	
 BQ	BES	535		Bonaire, Saint Eustatius and Saba 		328	18012	NA	.bq	USD	Dollar	599			nl,pap,en	7626844		
 BR	BRA	076	BR	Brazil	Brasilia	8511965	201103330	SA	.br	BRL	Real	55	#####-###	^\d{5}-\d{3}$	pt-BR,es,en,fr	3469034	SR,PE,BO,UY,GY,PY,GF,VE,CO,AR	
-BS	BHS	044	BF	Bahamas	Nassau	13940	301790	NA	.bs	BSD	Dollar	+1-242			en-BS	3572887		
+BS	BHS	044	BF	Bahamas	Nassau	13940	201103330	NA	.bs	BSD	Dollar	+1-242			en-BS	3572887
 BT	BTN	064	BT	Bhutan	Thimphu	47000	699847	AS	.bt	BTN	Ngultrum	975			dz	1252634	CN,IN	
 BV	BVT	074	BV	Bouvet Island		49	0	AN	.bv	NOK	Krone					3371123		
 BW	BWA	072	BC	Botswana	Gaborone	600370	2029307	AF	.bw	BWP	Pula	267			en-BW,tn-BW	933860	ZW,ZA,NA	
