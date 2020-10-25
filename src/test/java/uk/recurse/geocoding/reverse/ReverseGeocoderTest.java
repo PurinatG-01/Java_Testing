@@ -102,24 +102,27 @@ class ReverseGeocoderTest {
 
     @Test
     //Test3: Check boundary of two adjacent country in geo data
-    void Testadjacentcountryboundary()
+    void TestadjacentcountryboundaryInt()
     {
-        assertEquals("Thailand", geocoder.getCountry(17.711150, 104.411472).map(Country::name).get());
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(100, 116.873733).get();
-        });
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(17.711150, -180).get();
-        });
+
         assertThrows(NoSuchElementException.class, ()->{
             geocoder.getCountry(100, -180).get();
+            geocoder.getCountry(17.711150, -180).get();
+            geocoder.getCountry(100, 116.873733).get();
         });
 
-
-        assertEquals("Laos", geocoder.getCountry(17.96667, 102.6).map(Country::name).get());
-        assertEquals("Myanmar", geocoder.getCountry(20.46504, 94.8712).map(Country::name).get());
-        assertEquals("Cambodia", geocoder.getCountry(11.56245, 104.91601).map(Country::name).get());
-        assertEquals("Malaysia", geocoder.getCountry(6.32649, 99.8432).map(Country::name).get());
+        assertDoesNotThrow(()->{
+            assertEquals("Thailand", geocoder.getCountry(17.711150, 104.411472).map(Country::name).get());
+        });
+    }
+    @Test
+    void TestadjacentcountryboundaryFunc(){
+        assertDoesNotThrow(()->{
+            assertEquals("Laos", geocoder.getCountry(17.96667, 102.6).map(Country::name).get());
+            assertEquals("Myanmar", geocoder.getCountry(20.46504, 94.8712).map(Country::name).get());
+            assertEquals("Cambodia", geocoder.getCountry(11.56245, 104.91601).map(Country::name).get());
+            assertEquals("Malaysia", geocoder.getCountry(6.32649, 99.8432).map(Country::name).get());
+        });
     }
 
     @Test
@@ -182,40 +185,33 @@ class ReverseGeocoderTest {
 
     @Test
     //Test6: Check minimum lat and long to input
-    void Testminmaxlatlon()
+    void TestminmaxlatlonInt()
     {
         assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(-91.00,181.00).get();
+            geocoder.getCountry(-7.71833,0).get();
+            geocoder.getCountry(36.6825,0).get();
+            geocoder.getCountry(0,-102.32554).get();
+            geocoder.getCountry(0,124.73333).get();
+            geocoder.getCountry(0,0).get();
         });
-
+        assertDoesNotThrow( ()->{
+            assertEquals("Brazil",geocoder.getCountry(-23.64889,-46.85222).map(Country::name).get());
+            assertEquals("Mexico",geocoder.getCountry(20.62445,-103.23423).map(Country::name).get());
+            assertEquals("China",geocoder.getCountry(52.33333,124.73333).map(Country::name).get());
+        });
+    }
+    @Test
+    void TestminmaxlatlonFunc()
+    {
         assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(-91.00,-181.00).get();
+            geocoder.getCountry(120.4583,320.4353).get();
+            geocoder.getCountry(28.9349,-200.0043).get();
+            geocoder.getCountry(140.466,28.9349).get();
         });
 
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(91.00,-181.00).get();
+        assertDoesNotThrow( ()->{
+            assertEquals("Zimbabwe",geocoder.getCountry(-18.20476,28.9349).map(Country::name).get());
         });
-
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(91.00,181.00).get();
-        });
-
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(-91.00,27.8725).get();
-        });
-
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(91.00,27.8725).get();
-        });
-
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(7.88481,-181.00).get();
-        });
-
-        assertThrows(NoSuchElementException.class, ()->{
-            geocoder.getCountry(7.88481,181.00).get();
-        });
-
     }
 
 
